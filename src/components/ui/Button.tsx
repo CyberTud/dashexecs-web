@@ -29,9 +29,9 @@ export function Button({
   }
   
   const sizes = {
-    sm: "px-3 py-1.5 text-sm rounded-[16px]",
-    md: "px-4 py-2 text-base rounded-[20px]",
-    lg: "px-6 py-3 text-lg rounded-[24px]",
+    sm: "px-3 py-1.5 text-sm rounded-none",
+    md: "px-4 py-2 text-base rounded-none",
+    lg: "px-6 py-3 text-lg rounded-none",
   }
 
   return (

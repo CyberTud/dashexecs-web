@@ -23,30 +23,11 @@ const Navigation = () => {
             </div>
           </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <a
-              href="#features"
-              className="text-gray-300 hover:text-white transition-colors font-medium"
-            >
-              Features
-            </a>
-            <a
-              href="/dvm"
-              className="text-gray-300 hover:text-white transition-colors font-medium"
-            >
-              Dashboard
-            </a>
-          </div>
-
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
-            <button className="text-gray-300 hover:text-white transition-colors font-medium">
-              Login
-            </button>
             <a href="/dvm">
               <button className="btn-hover-light bg-white text-[#1a1a1a] border border-gray-300 px-6 py-2 rounded-none font-semibold transition-all">
-                Get Started
+                Book a Call
               </button>
             </a>
           </div>
@@ -65,27 +46,10 @@ const Navigation = () => {
       {mobileMenuOpen && (
         <div className="md:hidden glass-crystal border-t border-white/10">
           <div className="px-4 py-4 space-y-2">
-            <a
-              href="#features"
-              className="block text-gray-300 hover:text-white transition-colors font-medium py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Features
-            </a>
-            <a
-              href="/dvm"
-              className="block text-gray-300 hover:text-white transition-colors font-medium py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Dashboard
-            </a>
-            <div className="pt-4 border-t border-white/10 space-y-3">
-              <button className="block w-full text-left text-gray-300 hover:text-white transition-colors font-medium py-2">
-                Login
-              </button>
+            <div className="pt-4 space-y-3">
               <a href="/dvm">
                 <button className="btn-hover-light block w-full bg-white text-[#1a1a1a] border border-gray-300 px-6 py-3 rounded-none font-semibold transition-all">
-                  Get Started
+                  Book a Call
                 </button>
               </a>
             </div>
