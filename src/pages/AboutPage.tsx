@@ -40,7 +40,7 @@ const AboutPage = () => {
             className="max-w-4xl"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-6">
-              Our Mission
+              Mission
             </h2>
             <p className="text-lg text-gray-600 mb-4">
               AI initiatives are transforming organizations, but measuring their true impact remains a challenge. 
@@ -53,6 +53,40 @@ const AboutPage = () => {
               We customize a custom solution that matches your existing frameworks, workflows, and reporting requirements, 
               ensuring seamless integration with how your organization already operates.
             </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Founder */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-6">
+              Founder
+            </h2>
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold text-[#1a1a1a] mb-4">
+                Tudor Caloian
+              </h3>
+              <p className="text-lg text-gray-600 mb-4">
+                Tudor Caloian has a proven track record of helping organizations track and realize the value of AI initiatives. 
+                While working with Orange Group, he helped implement a comprehensive AI value tracking system across 26 countries.
+              </p>
+              <p className="text-lg text-gray-600 mb-4">
+                Under his leadership, Orange Group tracked <span className="font-bold text-[#1a1a1a]">€300M in AI use case value in 2025</span>, 
+                demonstrating the significant ROI that proper tracking and management can unlock.
+              </p>
+              <p className="text-lg text-gray-600">
+                His mission is to replicate this success for other organizations, bringing the same level of clarity, 
+                accountability, and value realization to AI initiatives worldwide.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
