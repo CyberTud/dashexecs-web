@@ -79,8 +79,7 @@ const AboutPage = () => {
                 While working with Orange Group, he helped implement a comprehensive AI value tracking system across 26 countries.
               </p>
               <p className="text-lg text-gray-600 mb-4">
-                Under his leadership, Orange Group tracked <span className="font-bold text-[#1a1a1a]">€300M in AI use case value in 2025</span>, 
-                demonstrating the significant ROI that proper tracking and management can unlock.
+                Under his leadership, Orange Group tracked <span className="font-bold text-[#1a1a1a]">€300M in AI use case value in 2025</span>.
               </p>
               <p className="text-lg text-gray-600">
                 His mission is to replicate this success for other organizations, bringing the same level of clarity, 
