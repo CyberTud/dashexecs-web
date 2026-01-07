@@ -1,9 +1,60 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import ReactECharts from 'echarts-for-react'
 import Navigation from '../components/Navigation'
 import { Button } from '../components/ui/Button'
 
 const LandingPage = () => {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+  // Sample quarterly data - Actual vs Ambition Revenue
+  const quarterlyData = [
+    {
+      quarter: 'Q1',
+      actualRevenue: 8.5,
+      ambitionRevenue: 15.0,
+    },
+    {
+      quarter: 'Q2',
+      actualRevenue: 13.2,
+      ambitionRevenue: 14.5,
+    },
+    {
+      quarter: 'Q3',
+      actualRevenue: 16.8,
+      ambitionRevenue: 17.0,
+    },
+    {
+      quarter: 'Q4',
+      actualRevenue: 20.5,
+      ambitionRevenue: 18.0,
+    },
+  ]
+
+  // Create chart data for each quarter (Actual vs Ambition)
+  const getQuarterChartData = (data: typeof quarterlyData[0]) => {
+    const remainingValue = Math.max(0, data.ambitionRevenue - data.actualRevenue)
+    
+    return [
+      {
+        value: data.actualRevenue,
+        name: 'Actual Revenue',
+      },
+      {
+        value: remainingValue,
+        name: 'Remaining to Ambition',
+      },
+    ]
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -12,27 +63,273 @@ const LandingPage = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#1a1a1a] mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            {/* Left Side - Hero Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-left"
+            >
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#1a1a1a] mb-4 sm:mb-6">
               Track ROI of AI in Your Organization
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-6 sm:mb-10">
               Customized for your frameworks. Measure and monitor the return on investment of every AI use case across your organization.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a href="/dvm">
-                <Button variant="primary" size="lg" className="flex items-center gap-2">
-                  Book a Call
-                  <ArrowRight className="w-5 h-5" />
-                </Button>
-              </a>
+              <div className="flex flex-col sm:flex-row gap-4 items-start">
+                <a href="/dvm">
+                  <Button variant="primary" size="lg" className="flex items-center gap-2">
+                    Book a Call
+                    <ArrowRight className="w-5 h-5" />
+                  </Button>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Right Side - Quarterly Circles with Total */}
+            <div className="flex justify-center lg:justify-end mt-8 lg:mt-0">
+              <div className="grid grid-cols-1 sm:grid-cols-5 gap-4 sm:gap-1 w-full sm:w-auto">
+              {quarterlyData.map((data) => {
+                const chartData = getQuarterChartData(data)
+                const percentage = ((data.actualRevenue / data.ambitionRevenue) * 100).toFixed(1)
+                
+                return (
+                  <div key={data.quarter} className="flex flex-col items-center">
+                    <div className="relative w-64 h-64 sm:w-28 sm:h-28 lg:w-32 lg:h-32">
+                      <ReactECharts
+                        option={{
+                          tooltip: {
+                            trigger: 'item',
+                            backgroundColor: '#fff',
+                            borderColor: '#e5e7eb',
+                            borderWidth: 1,
+                            borderRadius: 0,
+                            textStyle: {
+                              color: '#1a1a1a',
+                            },
+                            formatter: (params: any) => {
+                              if (params.name === 'Actual Revenue') {
+                                return `
+                                  <div style="padding: 8px;">
+                                    <div style="font-weight: bold; margin-bottom: 4px;">${data.quarter} Revenue</div>
+                                    <div>Actual: $${data.actualRevenue}M</div>
+                                    <div>Ambition: $${data.ambitionRevenue}M</div>
+                                    <div style="color: ${data.actualRevenue >= data.ambitionRevenue ? '#10b981' : '#ef4444'}; margin-top: 4px;">
+                                      ${data.actualRevenue >= data.ambitionRevenue ? '+' : ''}${(data.actualRevenue - data.ambitionRevenue).toFixed(2)}M
+                                    </div>
+                                  </div>
+                                `
+                              } else if (params.name === 'Remaining to Ambition') {
+                                return `
+                                  <div style="padding: 8px;">
+                                    <div style="font-weight: bold; margin-bottom: 4px;">${data.quarter} Revenue</div>
+                                    <div>Remaining: $${(data.ambitionRevenue - data.actualRevenue).toFixed(2)}M</div>
+                                    <div>Ambition: $${data.ambitionRevenue}M</div>
+                                    <div>Actual: $${data.actualRevenue}M</div>
+                                  </div>
+                                `
+                              }
+                              return ''
+                            },
+                          },
+                          series: [
+                            {
+                              name: `${data.quarter} Revenue`,
+                              type: 'pie',
+                              radius: ['40%', '70%'],
+                              avoidLabelOverlap: false,
+                              itemStyle: {
+                                borderRadius: 10,
+                                borderColor: '#fff',
+                                borderWidth: 2,
+                              },
+                              label: {
+                                show: true,
+                                position: 'center',
+                                fontSize: isMobile ? 32 : 20,
+                                fontWeight: 'bold',
+                                color: '#1a1a1a',
+                                formatter: data.quarter,
+                              },
+                              emphasis: {
+                                label: {
+                                  show: true,
+                                  fontSize: isMobile ? 32 : 20,
+                                  fontWeight: 'bold',
+                                  formatter: data.quarter,
+                                },
+                              },
+                              labelLine: {
+                                show: false,
+                              },
+                              data: [
+                                {
+                                  value: chartData[0].value,
+                                  name: chartData[0].name,
+                                  itemStyle: {
+                                    color: '#3b82f6',
+                                    borderRadius: 10,
+                                    borderColor: '#fff',
+                                    borderWidth: 2,
+                                  },
+                                },
+                                {
+                                  value: chartData[1].value,
+                                  name: chartData[1].name,
+                                  itemStyle: {
+                                    color: '#e5e7eb',
+                                    borderRadius: 10,
+                                    borderColor: '#fff',
+                                    borderWidth: 2,
+                                  },
+                                },
+                              ],
+                            },
+                          ],
+                        }}
+                        style={{ height: '100%', width: '100%' }}
+                      />
+                    </div>
+                    <div className="mt-4 sm:mt-2 text-center">
+                      <div className="text-sm sm:text-xs text-gray-600">
+                        ${data.actualRevenue}M / ${data.ambitionRevenue}M
+                      </div>
+                      <div className={`text-sm sm:text-xs font-semibold ${data.actualRevenue >= data.ambitionRevenue ? 'text-green-600' : 'text-red-600'}`}>
+                        {percentage}% of Ambition
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+              
+              {/* Total Circle */}
+              {(() => {
+                const totalActual = quarterlyData.reduce((sum, q) => sum + q.actualRevenue, 0)
+                const totalAmbition = quarterlyData.reduce((sum, q) => sum + q.ambitionRevenue, 0)
+                const totalPercentage = ((totalActual / totalAmbition) * 100).toFixed(1)
+                const totalChartData = [
+                  {
+                    value: totalActual,
+                    name: 'Actual Revenue',
+                  },
+                  {
+                    value: Math.max(0, totalAmbition - totalActual),
+                    name: 'Remaining to Ambition',
+                  },
+                ]
+                
+                return (
+                  <div key="total" className="flex flex-col items-center sm:col-span-1 sm:ml-2">
+                    <div className="relative w-64 h-64 sm:w-28 sm:h-28 lg:w-32 lg:h-32">
+                      <ReactECharts
+                        option={{
+                          tooltip: {
+                            trigger: 'item',
+                            backgroundColor: '#fff',
+                            borderColor: '#e5e7eb',
+                            borderWidth: 1,
+                            borderRadius: 0,
+                            textStyle: {
+                              color: '#1a1a1a',
+                            },
+                            formatter: (params: any) => {
+                              if (params.name === 'Actual Revenue') {
+                                return `
+                                  <div style="padding: 8px;">
+                                    <div style="font-weight: bold; margin-bottom: 4px;">Total Revenue</div>
+                                    <div>Actual: $${totalActual.toFixed(1)}M</div>
+                                    <div>Ambition: $${totalAmbition.toFixed(1)}M</div>
+                                    <div style="color: ${totalActual >= totalAmbition ? '#10b981' : '#ef4444'}; margin-top: 4px;">
+                                      ${totalActual >= totalAmbition ? '+' : ''}${(totalActual - totalAmbition).toFixed(2)}M
+                                    </div>
+                                  </div>
+                                `
+                              } else if (params.name === 'Remaining to Ambition') {
+                                return `
+                                  <div style="padding: 8px;">
+                                    <div style="font-weight: bold; margin-bottom: 4px;">Total Revenue</div>
+                                    <div>Remaining: $${(totalAmbition - totalActual).toFixed(2)}M</div>
+                                    <div>Ambition: $${totalAmbition.toFixed(1)}M</div>
+                                    <div>Actual: $${totalActual.toFixed(1)}M</div>
+                                  </div>
+                                `
+                              }
+                              return ''
+                            },
+                          },
+                          series: [
+                            {
+                              name: 'Total Revenue',
+                              type: 'pie',
+                              radius: ['40%', '70%'],
+                              avoidLabelOverlap: false,
+                              itemStyle: {
+                                borderRadius: 10,
+                                borderColor: '#fff',
+                                borderWidth: 2,
+                              },
+                              label: {
+                                show: true,
+                                position: 'center',
+                                fontSize: isMobile ? 24 : 16,
+                                fontWeight: 'bold',
+                                color: '#1a1a1a',
+                                formatter: 'Total',
+                              },
+                              emphasis: {
+                                label: {
+                                  show: true,
+                                  fontSize: isMobile ? 24 : 16,
+                                  fontWeight: 'bold',
+                                  formatter: 'Total',
+                                },
+                              },
+                              labelLine: {
+                                show: false,
+                              },
+                              data: [
+                                {
+                                  value: totalChartData[0].value,
+                                  name: totalChartData[0].name,
+                                  itemStyle: {
+                                    color: '#6b21a8',
+                                    borderRadius: 10,
+                                    borderColor: '#fff',
+                                    borderWidth: 2,
+                                  },
+                                },
+                                {
+                                  value: totalChartData[1].value,
+                                  name: totalChartData[1].name,
+                                  itemStyle: {
+                                    color: '#e5e7eb',
+                                    borderRadius: 10,
+                                    borderColor: '#fff',
+                                    borderWidth: 2,
+                                  },
+                                },
+                              ],
+                            },
+                          ],
+                        }}
+                        style={{ height: '100%', width: '100%' }}
+                      />
+                    </div>
+                    <div className="mt-4 sm:mt-2 text-center">
+                      <div className="text-sm sm:text-xs text-gray-600">
+                        ${totalActual.toFixed(1)}M / ${totalAmbition.toFixed(1)}M
+                      </div>
+                      <div className={`text-sm sm:text-xs font-semibold ${totalActual >= totalAmbition ? 'text-green-600' : 'text-red-600'}`}>
+                        {totalPercentage}% of Ambition
+                      </div>
+                    </div>
+                  </div>
+                )
+              })()}
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
