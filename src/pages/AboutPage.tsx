@@ -50,7 +50,7 @@ const AboutPage = () => {
               From ambition to actuals, we help leaders see where AI is creating value—and what to do next.
             </p>
             <p className="text-lg text-gray-600">
-              Our platform is customized to match your existing frameworks, workflows, and reporting requirements, 
+              We customize a custom solution that matches your existing frameworks, workflows, and reporting requirements, 
               ensuring seamless integration with how your organization already operates.
             </p>
           </motion.div>
