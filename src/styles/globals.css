@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    background: #ffffff;
+    color: #1a1a1a;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Crystal Glass Effect */
+  .glass-crystal {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.37),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* Dark Crystal Glass Effect for navbar on light background */
+  nav.glass-crystal {
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* Dark glass crystal for mobile menu */
+  nav > div.glass-crystal {
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-crystal-strong {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-crystal-light {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      0 4px 16px 0 rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-crystal-hover {
+    transition: all 0.3s ease;
+  }
+
+  .glass-crystal-hover:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 12px 40px 0 rgba(0, 0, 0, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+      0 0 20px rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+  }
+  
+  /* Button hover light effect - matches pacpac */
+  .btn-hover-light {
+    --highlight-hue: 210deg;
+    --highlight: hsl(var(--highlight-hue), 100%, 70%);
+    --highlight-30: hsla(var(--highlight-hue), 100%, 70%, 0.3);
+    position: relative;
+    transition: border-color 0.4s, box-shadow 0.4s;
+  }
+
+  .btn-hover-light::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 0;
+    transition: box-shadow 0.4s;
+    box-shadow:
+      0 -8px 8px -6px #0000 inset,
+      0 -16px 16px -8px #00000000 inset,
+      1px 1px 1px #fff2,
+      2px 2px 2px #fff1,
+      -1px -1px 1px #0002,
+      -2px -2px 2px #0001;
+  }
+
+  .btn-hover-light::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    background-image: linear-gradient(0deg, #fff, var(--highlight), hsla(var(--highlight-hue), 100%, 70%, 0.5), 8%, transparent);
+    background-position: 0 0;
+    opacity: 0;
+    transition: opacity 0.4s;
+    -webkit-mask-image: linear-gradient(0deg, #fff, transparent);
+    mask-image: linear-gradient(0deg, #fff, transparent);
+  }
+
+  .btn-hover-light:hover {
+    border-color: hsla(var(--highlight-hue), 100%, 80%, 0.4) !important;
+  }
+
+  .btn-hover-light:hover::before {
+    box-shadow:
+      0 -8px 8px -6px #fffa inset,
+      0 -16px 16px -8px var(--highlight-30) inset,
+      1px 1px 1px #fff2,
+      2px 2px 2px #fff1,
+      -1px -1px 1px #0002,
+      -2px -2px 2px #0001;
+  }
+
+  .btn-hover-light:hover::after {
+    opacity: 1;
+  }
+
+  .btn-hover-light > * {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}

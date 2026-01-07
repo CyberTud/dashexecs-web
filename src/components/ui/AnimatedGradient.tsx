@@ -1,0 +1,42 @@
+import { motion } from "framer-motion"
+
+export function AnimatedGradient() {
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      <motion.div
+        className="absolute -inset-10 opacity-30"
+        animate={{
+          background: [
+            "radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.3) 0%, transparent 50%)",
+            "radial-gradient(circle at 80% 80%, rgba(37, 99, 235, 0.3) 0%, transparent 50%)",
+            "radial-gradient(circle at 40% 20%, rgba(37, 99, 235, 0.3) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.3) 0%, transparent 50%)",
+          ],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+      <motion.div
+        className="absolute -inset-10 opacity-20"
+        animate={{
+          background: [
+            "radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.2) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.2) 0%, transparent 50%)",
+            "radial-gradient(circle at 60% 60%, rgba(59, 130, 246, 0.2) 0%, transparent 50%)",
+            "radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.2) 0%, transparent 50%)",
+          ],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+    </div>
+  )
+}
+
+
