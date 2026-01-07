@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Cloud, Server, Shield, Zap } from 'lucide-react'
+import { ArrowRight, Cloud, Server } from 'lucide-react'
 import Navigation from '../components/Navigation'
 import { Button } from '../components/ui/Button'
 
@@ -37,46 +37,22 @@ const AboutPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+            className="max-w-4xl"
           >
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-6">
-                Our Mission
-              </h2>
-              <p className="text-lg text-gray-600 mb-4">
-                AI initiatives are transforming organizations, but measuring their true impact remains a challenge. 
-                DashExecs bridges this gap by providing executives with clear, actionable insights into the ROI of every AI use case.
-              </p>
-              <p className="text-lg text-gray-600 mb-4">
-                From ambition to actuals, we help leaders see where AI is creating value—and what to do next.
-              </p>
-              <p className="text-lg text-gray-600">
-                Our platform is customized to match your existing frameworks, workflows, and reporting requirements, 
-                ensuring seamless integration with how your organization already operates.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-white p-6 border border-gray-200">
-                <Zap className="w-10 h-10 text-blue-600 mb-4" />
-                <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">Custom Built</h3>
-                <p className="text-gray-600">Tailored to your frameworks and workflows</p>
-              </div>
-              <div className="bg-white p-6 border border-gray-200">
-                <Shield className="w-10 h-10 text-blue-600 mb-4" />
-                <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">Secure</h3>
-                <p className="text-gray-600">Enterprise-grade security standards</p>
-              </div>
-              <div className="bg-white p-6 border border-gray-200">
-                <Server className="w-10 h-10 text-blue-600 mb-4" />
-                <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">On-Premise</h3>
-                <p className="text-gray-600">Deploy within your infrastructure</p>
-              </div>
-              <div className="bg-white p-6 border border-gray-200">
-                <Cloud className="w-10 h-10 text-blue-600 mb-4" />
-                <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">Cloud</h3>
-                <p className="text-gray-600">Or use our managed cloud solution</p>
-              </div>
-            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-6">
+              Our Mission
+            </h2>
+            <p className="text-lg text-gray-600 mb-4">
+              AI initiatives are transforming organizations, but measuring their true impact remains a challenge. 
+              DashExecs bridges this gap by providing executives with clear, actionable insights into the ROI of every AI use case.
+            </p>
+            <p className="text-lg text-gray-600 mb-4">
+              From ambition to actuals, we help leaders see where AI is creating value—and what to do next.
+            </p>
+            <p className="text-lg text-gray-600">
+              Our platform is customized to match your existing frameworks, workflows, and reporting requirements, 
+              ensuring seamless integration with how your organization already operates.
+            </p>
           </motion.div>
         </div>
       </section>
