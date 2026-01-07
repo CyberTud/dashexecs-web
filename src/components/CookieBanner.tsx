@@ -1,15 +1,30 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Button } from './ui/Button'
 
-type CookieConsent = 'accepted' | 'rejected'
+type CookieConsent = 'accepted' | 'rejected' | 'custom'
+
+type CookiePrefs = {
+  necessary: true
+  analytics: boolean
+  marketing: boolean
+  preferences: boolean
+}
 
 const STORAGE_KEY = 'dashexecs_cookie_consent'
+const PREFS_KEY = 'dashexecs_cookie_prefs'
+
+const DEFAULT_PREFS: CookiePrefs = {
+  necessary: true,
+  analytics: false,
+  marketing: false,
+  preferences: false,
+}
 
 function readStoredConsent(): CookieConsent | null {
   if (typeof window === 'undefined') return null
   try {
     const v = window.localStorage.getItem(STORAGE_KEY)
-    if (v === 'accepted' || v === 'rejected') return v
+    if (v === 'accepted' || v === 'rejected' || v === 'custom') return v
     return null
   } catch {
     return null
@@ -24,10 +39,37 @@ function writeStoredConsent(consent: CookieConsent) {
   }
 }
 
+function readStoredPrefs(): CookiePrefs {
+  if (typeof window === 'undefined') return DEFAULT_PREFS
+  try {
+    const raw = window.localStorage.getItem(PREFS_KEY)
+    if (!raw) return DEFAULT_PREFS
+    const parsed = JSON.parse(raw) as Partial<CookiePrefs>
+    return {
+      necessary: true,
+      analytics: Boolean(parsed.analytics),
+      marketing: Boolean(parsed.marketing),
+      preferences: Boolean(parsed.preferences),
+    }
+  } catch {
+    return DEFAULT_PREFS
+  }
+}
+
+function writeStoredPrefs(prefs: CookiePrefs) {
+  try {
+    window.localStorage.setItem(PREFS_KEY, JSON.stringify(prefs))
+  } catch {
+    // ignore
+  }
+}
+
 export default function CookieBanner() {
   const initialConsent = useMemo(() => readStoredConsent(), [])
   const [consent, setConsent] = useState<CookieConsent | null>(initialConsent)
   const isOpen = consent === null
+  const [isCustomizing, setIsCustomizing] = useState(false)
+  const [prefs, setPrefs] = useState<CookiePrefs>(() => readStoredPrefs())
 
   useEffect(() => {
     // Keep state in sync if localStorage gets updated elsewhere (rare, but safe).
@@ -38,14 +80,28 @@ export default function CookieBanner() {
 
   if (!isOpen) return null
 
-  const accept = () => {
+  const acceptAll = () => {
+    const next: CookiePrefs = { necessary: true, analytics: true, marketing: true, preferences: true }
+    writeStoredPrefs(next)
     writeStoredConsent('accepted')
     setConsent('accepted')
   }
 
-  const reject = () => {
+  const rejectAll = () => {
+    const next: CookiePrefs = { necessary: true, analytics: false, marketing: false, preferences: false }
+    writeStoredPrefs(next)
     writeStoredConsent('rejected')
     setConsent('rejected')
+  }
+
+  const openCustomize = () => {
+    setIsCustomizing(true)
+  }
+
+  const savePrefs = () => {
+    writeStoredPrefs(prefs)
+    writeStoredConsent('custom')
+    setConsent('custom')
   }
 
   return (
@@ -62,14 +118,72 @@ export default function CookieBanner() {
           </div>
 
           <div className="flex flex-col gap-2 sm:flex-row sm:gap-3">
-            <Button variant="secondary" size="sm" className="w-full sm:w-auto" onClick={reject}>
-              Reject
+            <Button variant="secondary" size="sm" className="w-full sm:w-auto" onClick={rejectAll}>
+              Reject all
             </Button>
-            <Button variant="primary" size="sm" className="w-full sm:w-auto" onClick={accept}>
-              Accept
+            <Button variant="secondary" size="sm" className="w-full sm:w-auto" onClick={openCustomize}>
+              Customize
+            </Button>
+            <Button variant="primary" size="sm" className="w-full sm:w-auto" onClick={acceptAll}>
+              Accept all
             </Button>
           </div>
         </div>
+
+        {isCustomizing && (
+          <div className="border-t border-gray-200 px-4 py-4 sm:px-6">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <label className="flex items-center justify-between gap-3 border border-gray-200 px-3 py-2">
+                <span className="text-sm font-medium text-[#1a1a1a]">Necessary</span>
+                <input type="checkbox" checked disabled className="h-4 w-4" />
+              </label>
+
+              <label className="flex items-center justify-between gap-3 border border-gray-200 px-3 py-2">
+                <span className="text-sm font-medium text-[#1a1a1a]">Preferences</span>
+                <input
+                  type="checkbox"
+                  checked={prefs.preferences}
+                  onChange={(e) => setPrefs((p) => ({ ...p, preferences: e.target.checked }))}
+                  className="h-4 w-4"
+                />
+              </label>
+
+              <label className="flex items-center justify-between gap-3 border border-gray-200 px-3 py-2">
+                <span className="text-sm font-medium text-[#1a1a1a]">Analytics</span>
+                <input
+                  type="checkbox"
+                  checked={prefs.analytics}
+                  onChange={(e) => setPrefs((p) => ({ ...p, analytics: e.target.checked }))}
+                  className="h-4 w-4"
+                />
+              </label>
+
+              <label className="flex items-center justify-between gap-3 border border-gray-200 px-3 py-2">
+                <span className="text-sm font-medium text-[#1a1a1a]">Marketing</span>
+                <input
+                  type="checkbox"
+                  checked={prefs.marketing}
+                  onChange={(e) => setPrefs((p) => ({ ...p, marketing: e.target.checked }))}
+                  className="h-4 w-4"
+                />
+              </label>
+            </div>
+
+            <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:justify-end sm:gap-3">
+              <Button
+                variant="secondary"
+                size="sm"
+                className="w-full sm:w-auto"
+                onClick={() => setIsCustomizing(false)}
+              >
+                Cancel
+              </Button>
+              <Button variant="primary" size="sm" className="w-full sm:w-auto" onClick={savePrefs}>
+                Save preferences
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
