@@ -5,6 +5,8 @@ import ReactECharts from 'echarts-for-react'
 import Navigation from '../components/Navigation'
 import { Button } from '../components/ui/Button'
 
+const BOOK_A_CALL_URL = 'https://calendly.com/tudor-caloian/30min'
+
 const LandingPage = () => {
   const [isMobile, setIsMobile] = useState(false)
 
@@ -78,7 +80,7 @@ const LandingPage = () => {
               Customized for your frameworks. Measure and monitor the return on investment of every AI use case across your organization.
             </p>
               <div className="flex flex-col sm:flex-row gap-4 items-start">
-                <a href="/dvm">
+                <a href={BOOK_A_CALL_URL} target="_blank" rel="noreferrer">
                   <Button variant="primary" size="lg" className="flex items-center gap-2">
                     Book a Call
                     <ArrowRight className="w-5 h-5" />
