@@ -332,31 +332,6 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-6">
-              Ready to Get Started?
-            </h2>
-            <p className="text-xl text-gray-600 mb-10">
-              Start tracking the ROI of AI in your organization today with DashExecs.
-            </p>
-            <a href="/dvm">
-              <Button variant="primary" size="lg" className="flex items-center gap-2 mx-auto">
-                Book a Call
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </a>
-          </motion.div>
-        </div>
-      </section>
     </div>
   )
 }
