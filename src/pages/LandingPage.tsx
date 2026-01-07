@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Cloud, Server } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import ReactECharts from 'echarts-for-react'
 import Navigation from '../components/Navigation'
 import { Button } from '../components/ui/Button'
@@ -379,100 +380,108 @@ const LandingPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* CEO Dashboard */}
-            <motion.div
-              id="ceo-dashboard"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200 scroll-mt-20"
-            >
-              <img
-                src="/screenshot-ceo-dashboard.png"
-                alt="CEO Dashboard - Quarterly performance tracking"
-                className="w-full h-auto"
-              />
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-[#1a1a1a] mb-2">
-                  CEO Dashboard
-                </h3>
-                <p className="text-gray-600">
-                  Track quarterly performance at a glance with visual comparisons of actual vs. ambition across all AI initiatives.
-                </p>
-              </div>
-            </motion.div>
+            <Link to="/solutions/ceo-dashboard">
+              <motion.div
+                id="ceo-dashboard"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200 scroll-mt-20 cursor-pointer hover:shadow-xl transition-shadow"
+              >
+                <img
+                  src="/screenshot-ceo-dashboard.png"
+                  alt="CEO Dashboard - Quarterly performance tracking"
+                  className="w-full h-auto"
+                />
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-[#1a1a1a] mb-2">
+                    CEO Dashboard
+                  </h3>
+                  <p className="text-gray-600">
+                    Track quarterly performance at a glance with visual comparisons of actual vs. ambition across all AI initiatives.
+                  </p>
+                </div>
+              </motion.div>
+            </Link>
 
             {/* Use Cases Marketplace */}
-            <motion.div
-              id="marketplace"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200 scroll-mt-20"
-            >
-              <img
-                src="/screenshot-marketplace.png"
-                alt="AI Use Cases Marketplace"
-                className="w-full h-auto"
-              />
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-[#1a1a1a] mb-2">
-                  Use Cases Marketplace
-                </h3>
-                <p className="text-gray-600">
-                  Discover and deploy AI solutions tailored to your business needs, from analytics to automation.
-                </p>
-              </div>
-            </motion.div>
+            <Link to="/solutions/marketplace">
+              <motion.div
+                id="marketplace"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200 scroll-mt-20 cursor-pointer hover:shadow-xl transition-shadow"
+              >
+                <img
+                  src="/screenshot-marketplace.png"
+                  alt="AI Use Cases Marketplace"
+                  className="w-full h-auto"
+                />
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-[#1a1a1a] mb-2">
+                    Use Cases Marketplace
+                  </h3>
+                  <p className="text-gray-600">
+                    Discover and deploy AI solutions tailored to your business needs, from analytics to automation.
+                  </p>
+                </div>
+              </motion.div>
+            </Link>
 
             {/* KPI Management */}
-            <motion.div
-              id="kpi-management"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200 scroll-mt-20"
-            >
-              <img
-                src="/screenshot-kpi-management.png"
-                alt="KPI Management - Quarterly metrics"
-                className="w-full h-auto"
-              />
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-[#1a1a1a] mb-2">
-                  KPI Management
-                </h3>
-                <p className="text-gray-600">
-                  Business leaders input and track their KPIs quarterly, with visual half-donut charts showing progress against ambition.
-                </p>
-              </div>
-            </motion.div>
+            <Link to="/solutions/kpi-management">
+              <motion.div
+                id="kpi-management"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200 scroll-mt-20 cursor-pointer hover:shadow-xl transition-shadow"
+              >
+                <img
+                  src="/screenshot-kpi-management.png"
+                  alt="KPI Management - Quarterly metrics"
+                  className="w-full h-auto"
+                />
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-[#1a1a1a] mb-2">
+                    KPI Management
+                  </h3>
+                  <p className="text-gray-600">
+                    Business leaders input and track their KPIs quarterly, with visual half-donut charts showing progress against ambition.
+                  </p>
+                </div>
+              </motion.div>
+            </Link>
 
             {/* Financial Tracking */}
-            <motion.div
-              id="financial-tracking"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200 scroll-mt-20"
-            >
-              <img
-                src="/screenshot-usecase-detail.png"
-                alt="Financial Tracking - Metrics input"
-                className="w-full h-auto"
-              />
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-[#1a1a1a] mb-2">
-                  Financial Tracking
-                </h3>
-                <p className="text-gray-600">
-                  Input program details and financial metrics with quarterly breakdowns for ambition and actual values.
-                </p>
-              </div>
-            </motion.div>
+            <Link to="/solutions/financial-tracking">
+              <motion.div
+                id="financial-tracking"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200 scroll-mt-20 cursor-pointer hover:shadow-xl transition-shadow"
+              >
+                <img
+                  src="/screenshot-usecase-detail.png"
+                  alt="Financial Tracking - Metrics input"
+                  className="w-full h-auto"
+                />
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-[#1a1a1a] mb-2">
+                    Financial Tracking
+                  </h3>
+                  <p className="text-gray-600">
+                    Input program details and financial metrics with quarterly breakdowns for ambition and actual values.
+                  </p>
+                </div>
+              </motion.div>
+            </Link>
           </div>
         </div>
       </section>
