@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Cloud, Server } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import ReactECharts from 'echarts-for-react'
 import Navigation from '../components/Navigation'
@@ -474,6 +474,68 @@ const LandingPage = () => {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Flexible Deployment */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-12 text-center">
+              Flexible Deployment
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="border border-gray-200 p-8">
+                <Server className="w-12 h-12 text-[#1a1a1a] mb-4" />
+                <h3 className="text-2xl font-bold text-[#1a1a1a] mb-4">On-Premise</h3>
+                <ul className="space-y-3 text-gray-600">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    Full control over your data
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    Deploy within your existing infrastructure
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    Meet strict compliance requirements
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    Integrate with internal systems
+                  </li>
+                </ul>
+              </div>
+              <div className="border border-gray-200 p-8">
+                <Cloud className="w-12 h-12 text-[#1a1a1a] mb-4" />
+                <h3 className="text-2xl font-bold text-[#1a1a1a] mb-4">Cloud</h3>
+                <ul className="space-y-3 text-gray-600">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    Quick setup and deployment
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    Automatic updates and maintenance
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    Scalable infrastructure
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    Enterprise-grade security
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

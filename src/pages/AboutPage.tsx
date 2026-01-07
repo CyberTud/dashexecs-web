@@ -70,7 +70,7 @@ const AboutPage = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-6">
               Founder
             </h2>
-            <div className="mb-6">
+            <div className="mb-0">
               <h3 className="text-2xl font-bold text-[#1a1a1a] mb-4">
                 Tudor Caloian
               </h3>
