@@ -133,39 +133,59 @@ export default function CookieBanner() {
         {isCustomizing && (
           <div className="border-t border-gray-200 px-4 py-4 sm:px-6">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <label className="flex items-center justify-between gap-3 border border-gray-200 px-3 py-2">
-                <span className="text-sm font-medium text-[#1a1a1a]">Necessary</span>
-                <input type="checkbox" checked disabled className="h-4 w-4" />
+              <label className="border border-gray-200 px-3 py-2">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-sm font-medium text-[#1a1a1a]">Necessary</span>
+                  <input type="checkbox" checked disabled className="h-4 w-4" />
+                </div>
+                <div className="mt-1 text-xs text-gray-600">
+                  Required for the site to function (security, basic page features).
+                </div>
               </label>
 
-              <label className="flex items-center justify-between gap-3 border border-gray-200 px-3 py-2">
-                <span className="text-sm font-medium text-[#1a1a1a]">Preferences</span>
-                <input
-                  type="checkbox"
-                  checked={prefs.preferences}
-                  onChange={(e) => setPrefs((p) => ({ ...p, preferences: e.target.checked }))}
-                  className="h-4 w-4"
-                />
+              <label className="border border-gray-200 px-3 py-2">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-sm font-medium text-[#1a1a1a]">Preferences</span>
+                  <input
+                    type="checkbox"
+                    checked={prefs.preferences}
+                    onChange={(e) => setPrefs((p) => ({ ...p, preferences: e.target.checked }))}
+                    className="h-4 w-4"
+                  />
+                </div>
+                <div className="mt-1 text-xs text-gray-600">
+                  Remember your choices (e.g. cookie consent, UI preferences).
+                </div>
               </label>
 
-              <label className="flex items-center justify-between gap-3 border border-gray-200 px-3 py-2">
-                <span className="text-sm font-medium text-[#1a1a1a]">Analytics</span>
-                <input
-                  type="checkbox"
-                  checked={prefs.analytics}
-                  onChange={(e) => setPrefs((p) => ({ ...p, analytics: e.target.checked }))}
-                  className="h-4 w-4"
-                />
+              <label className="border border-gray-200 px-3 py-2">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-sm font-medium text-[#1a1a1a]">Analytics</span>
+                  <input
+                    type="checkbox"
+                    checked={prefs.analytics}
+                    onChange={(e) => setPrefs((p) => ({ ...p, analytics: e.target.checked }))}
+                    className="h-4 w-4"
+                  />
+                </div>
+                <div className="mt-1 text-xs text-gray-600">
+                  Help us understand usage and improve the site’s performance.
+                </div>
               </label>
 
-              <label className="flex items-center justify-between gap-3 border border-gray-200 px-3 py-2">
-                <span className="text-sm font-medium text-[#1a1a1a]">Marketing</span>
-                <input
-                  type="checkbox"
-                  checked={prefs.marketing}
-                  onChange={(e) => setPrefs((p) => ({ ...p, marketing: e.target.checked }))}
-                  className="h-4 w-4"
-                />
+              <label className="border border-gray-200 px-3 py-2">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-sm font-medium text-[#1a1a1a]">Marketing</span>
+                  <input
+                    type="checkbox"
+                    checked={prefs.marketing}
+                    onChange={(e) => setPrefs((p) => ({ ...p, marketing: e.target.checked }))}
+                    className="h-4 w-4"
+                  />
+                </div>
+                <div className="mt-1 text-xs text-gray-600">
+                  Used to personalize messaging and measure marketing effectiveness.
+                </div>
               </label>
             </div>
 
