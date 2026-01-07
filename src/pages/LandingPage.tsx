@@ -336,7 +336,7 @@ const LandingPage = () => {
       </section>
 
       {/* About */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-100">
+      <section id="about" className="py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-100 scroll-mt-20">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -380,11 +380,12 @@ const LandingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* CEO Dashboard */}
             <motion.div
+              id="ceo-dashboard"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200"
+              className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200 scroll-mt-20"
             >
               <img
                 src="/screenshot-ceo-dashboard.png"
@@ -403,11 +404,12 @@ const LandingPage = () => {
 
             {/* Use Cases Marketplace */}
             <motion.div
+              id="marketplace"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200"
+              className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200 scroll-mt-20"
             >
               <img
                 src="/screenshot-marketplace.png"
@@ -426,11 +428,12 @@ const LandingPage = () => {
 
             {/* KPI Management */}
             <motion.div
+              id="kpi-management"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200"
+              className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200 scroll-mt-20"
             >
               <img
                 src="/screenshot-kpi-management.png"
@@ -447,22 +450,23 @@ const LandingPage = () => {
               </div>
             </motion.div>
 
-            {/* Use Case Detail */}
+            {/* Financial Tracking */}
             <motion.div
+              id="financial-tracking"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200"
+              className="bg-white rounded-none shadow-lg overflow-hidden border border-gray-200 scroll-mt-20"
             >
               <img
                 src="/screenshot-usecase-detail.png"
-                alt="Use Case Detail - Financial metrics input"
+                alt="Financial Tracking - Metrics input"
                 className="w-full h-auto"
               />
               <div className="p-6">
                 <h3 className="text-2xl font-bold text-[#1a1a1a] mb-2">
-                  Detailed Tracking
+                  Financial Tracking
                 </h3>
                 <p className="text-gray-600">
                   Input program details and financial metrics with quarterly breakdowns for ambition and actual values.
