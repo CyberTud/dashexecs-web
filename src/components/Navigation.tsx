@@ -1,13 +1,14 @@
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const BOOK_A_CALL_URL = 'https://calendly.com/tudor-caloian/30min'
 
 const solutions = [
-  { name: 'CEO Dashboard', href: '#ceo-dashboard', description: 'Track quarterly performance at a glance' },
-  { name: 'Use Cases Marketplace', href: '#marketplace', description: 'Discover and deploy AI solutions' },
-  { name: 'KPI Management', href: '#kpi-management', description: 'Manage and visualize your KPIs' },
-  { name: 'Financial Tracking', href: '#financial-tracking', description: 'Track ROI with detailed metrics' },
+  { name: 'CEO Dashboard', href: '/solutions/ceo-dashboard', description: 'Track quarterly performance at a glance' },
+  { name: 'Use Cases Marketplace', href: '/solutions/marketplace', description: 'Discover and deploy AI solutions' },
+  { name: 'KPI Management', href: '/solutions/kpi-management', description: 'Manage and visualize your KPIs' },
+  { name: 'Financial Tracking', href: '/solutions/financial-tracking', description: 'Track ROI with detailed metrics' },
 ]
 
 const Navigation = () => {
@@ -19,8 +20,8 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a
-            href="/"
+          <Link
+            to="/"
             className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity"
           >
             <img
@@ -31,7 +32,7 @@ const Navigation = () => {
             <div className="text-2xl font-bold text-white">
               DashExecs
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center gap-8">
@@ -48,20 +49,21 @@ const Navigation = () => {
               
               {solutionsOpen && (
                 <div
-                  className="absolute top-full left-0 mt-2 w-72 bg-[#1a1a1a] border border-gray-700 rounded-none shadow-xl"
+                  className="absolute top-full left-0 mt-2 w-80 bg-[#1a1a1a] border border-gray-700 rounded-none shadow-xl"
                   onMouseLeave={() => setSolutionsOpen(false)}
                 >
                   <div className="py-2">
                     {solutions.map((solution) => (
-                      <a
+                      <Link
                         key={solution.name}
-                        href={solution.href}
-                        className="block px-4 py-3 hover:bg-gray-800 transition-colors"
+                        to={solution.href}
+                        className="block px-4 py-3 btn-hover-light transition-all"
                         onClick={() => setSolutionsOpen(false)}
+                        style={{ '--highlight-hue': '210deg' } as React.CSSProperties}
                       >
                         <div className="text-white font-medium">{solution.name}</div>
                         <div className="text-gray-400 text-sm">{solution.description}</div>
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -69,12 +71,12 @@ const Navigation = () => {
             </div>
 
             {/* About Link */}
-            <a
-              href="#about"
+            <Link
+              to="/about"
               className="text-gray-300 hover:text-white transition-colors font-medium"
             >
               About
-            </a>
+            </Link>
           </div>
 
           {/* CTA Button */}
@@ -107,26 +109,26 @@ const Navigation = () => {
               </div>
               <div className="space-y-1">
                 {solutions.map((solution) => (
-                  <a
+                  <Link
                     key={solution.name}
-                    href={solution.href}
-                    className="block py-2 text-white hover:text-gray-300 transition-colors"
+                    to={solution.href}
+                    className="block py-2 text-white hover:text-blue-400 transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {solution.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
 
             {/* About Link */}
-            <a
-              href="#about"
-              className="block py-2 text-white hover:text-gray-300 transition-colors font-medium"
+            <Link
+              to="/about"
+              className="block py-2 text-white hover:text-blue-400 transition-colors font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
               About
-            </a>
+            </Link>
 
             {/* CTA */}
             <div className="pt-4">
