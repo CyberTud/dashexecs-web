@@ -88,7 +88,7 @@ const LandingPage = () => {
               Track ROI of AI in Your Organization
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-6 sm:mb-10">
-              Customized for your frameworks. Measure and monitor the return on investment of every AI use case across your organization.
+              Customized for your frameworks. Measure and monitor the AI value generated across your organization.
             </p>
               <div className="flex flex-col sm:flex-row gap-4 items-start">
                 <a href={BOOK_A_CALL_URL} target="_blank" rel="noreferrer">
