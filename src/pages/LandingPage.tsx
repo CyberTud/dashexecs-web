@@ -140,7 +140,7 @@ const LandingPage = () => {
                               if (params.name === 'Actual Revenue') {
                                 return `
                                   <div style="padding: 8px;">
-                                    <div style="font-weight: bold; margin-bottom: 4px;">${data.quarter} Revenue</div>
+                                    <div style="font-weight: bold; margin-bottom: 4px;">${data.quarter} Value Generated</div>
                                     <div>Actual: $${data.actualRevenue}M</div>
                                     <div>Ambition: $${data.ambitionRevenue}M</div>
                                     <div style="color: ${data.actualRevenue >= data.ambitionRevenue ? '#10b981' : '#ef4444'}; margin-top: 4px;">
@@ -151,7 +151,7 @@ const LandingPage = () => {
                               } else if (params.name === 'Remaining to Ambition') {
                                 return `
                                   <div style="padding: 8px;">
-                                    <div style="font-weight: bold; margin-bottom: 4px;">${data.quarter} Revenue</div>
+                                    <div style="font-weight: bold; margin-bottom: 4px;">${data.quarter} Value Generated</div>
                                     <div>Remaining: $${(data.ambitionRevenue - data.actualRevenue).toFixed(2)}M</div>
                                     <div>Ambition: $${data.ambitionRevenue}M</div>
                                     <div>Actual: $${data.actualRevenue}M</div>
@@ -163,7 +163,7 @@ const LandingPage = () => {
                           },
                           series: [
                             {
-                              name: `${data.quarter} Revenue`,
+                              name: `${data.quarter} Value Generated`,
                               type: 'pie',
                               radius: ['40%', '70%'],
                               avoidLabelOverlap: false,
@@ -280,7 +280,7 @@ const LandingPage = () => {
                               if (params.name === 'Actual Revenue') {
                                 return `
                                   <div style="padding: 8px;">
-                                    <div style="font-weight: bold; margin-bottom: 4px;">Total Revenue</div>
+                                    <div style="font-weight: bold; margin-bottom: 4px;">Total Value Generated</div>
                                     <div>Actual: $${totalActual.toFixed(1)}M</div>
                                     <div>Ambition: $${totalAmbition.toFixed(1)}M</div>
                                     <div style="color: ${totalActual >= totalAmbition ? '#10b981' : '#ef4444'}; margin-top: 4px;">
@@ -291,7 +291,7 @@ const LandingPage = () => {
                               } else if (params.name === 'Remaining to Ambition') {
                                 return `
                                   <div style="padding: 8px;">
-                                    <div style="font-weight: bold; margin-bottom: 4px;">Total Revenue</div>
+                                    <div style="font-weight: bold; margin-bottom: 4px;">Total Value Generated</div>
                                     <div>Remaining: $${(totalAmbition - totalActual).toFixed(2)}M</div>
                                     <div>Ambition: $${totalAmbition.toFixed(1)}M</div>
                                     <div>Actual: $${totalActual.toFixed(1)}M</div>
@@ -303,7 +303,7 @@ const LandingPage = () => {
                           },
                           series: [
                             {
-                              name: 'Total Revenue',
+                              name: 'Total Value Generated',
                               type: 'pie',
                               radius: ['40%', '70%'],
                               avoidLabelOverlap: false,
