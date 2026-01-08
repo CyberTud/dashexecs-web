@@ -101,8 +101,8 @@ const LandingPage = () => {
             </motion.div>
 
             {/* Right Side - Quarterly Circles with Total */}
-            <div className="flex justify-center lg:justify-end mt-8 lg:mt-0">
-              <div className="grid grid-cols-1 sm:grid-cols-5 gap-4 sm:gap-1 w-full sm:w-auto">
+            <div className="flex justify-center lg:justify-start mt-8 lg:mt-0">
+              <div className="flex flex-col gap-6 w-full lg:w-auto">
               {quarterlyData.map((data) => {
                 const chartData = getQuarterChartData(data)
                 const percentage = ((data.actualRevenue / data.ambitionRevenue) * 100).toFixed(1)
@@ -110,7 +110,7 @@ const LandingPage = () => {
                 return (
                   <div key={data.quarter} className="flex flex-col items-center">
                     <div 
-                      className="relative w-64 h-64 sm:w-28 sm:h-28 lg:w-32 lg:h-32 chart-container" 
+                      className="relative w-48 h-48 lg:w-56 lg:h-56 chart-container" 
                       data-chart-key={data.quarter}
                       onTouchEnd={() => {
                         if (isMobile) {
@@ -175,7 +175,7 @@ const LandingPage = () => {
                               label: {
                                 show: true,
                                 position: 'center',
-                                fontSize: isMobile ? 32 : 20,
+                                fontSize: 24,
                                 fontWeight: 'bold',
                                 color: '#1a1a1a',
                                 formatter: data.quarter,
@@ -183,7 +183,7 @@ const LandingPage = () => {
                               emphasis: {
                                 label: {
                                   show: true,
-                                  fontSize: isMobile ? 32 : 20,
+                                  fontSize: 24,
                                   fontWeight: 'bold',
                                   formatter: data.quarter,
                                 },
@@ -219,11 +219,11 @@ const LandingPage = () => {
                         style={{ height: '100%', width: '100%' }}
                       />
                     </div>
-                    <div className="mt-4 sm:mt-2 text-center">
-                      <div className="text-sm sm:text-xs text-gray-600">
+                    <div className="mt-4 text-center">
+                      <div className="text-sm text-gray-600">
                         ${data.actualRevenue}M / ${data.ambitionRevenue}M
                       </div>
-                      <div className={`text-sm sm:text-xs font-semibold ${data.actualRevenue >= data.ambitionRevenue ? 'text-green-600' : 'text-red-600'}`}>
+                      <div className={`text-sm font-semibold ${data.actualRevenue >= data.ambitionRevenue ? 'text-green-600' : 'text-red-600'}`}>
                         {percentage}% of Ambition
                       </div>
                     </div>
@@ -248,9 +248,9 @@ const LandingPage = () => {
                 ]
                 
                 return (
-                  <div key="total" className="flex flex-col items-center sm:col-span-1 sm:ml-2">
+                  <div key="total" className="flex flex-col items-center">
                     <div 
-                      className="relative w-64 h-64 sm:w-28 sm:h-28 lg:w-32 lg:h-32 chart-container" 
+                      className="relative w-48 h-48 lg:w-56 lg:h-56 chart-container" 
                       data-chart-key="total"
                       onTouchEnd={() => {
                         if (isMobile) {
@@ -315,7 +315,7 @@ const LandingPage = () => {
                               label: {
                                 show: true,
                                 position: 'center',
-                                fontSize: isMobile ? 24 : 16,
+                                fontSize: 20,
                                 fontWeight: 'bold',
                                 color: '#1a1a1a',
                                 formatter: 'Total',
@@ -323,7 +323,7 @@ const LandingPage = () => {
                               emphasis: {
                                 label: {
                                   show: true,
-                                  fontSize: isMobile ? 24 : 16,
+                                  fontSize: 20,
                                   fontWeight: 'bold',
                                   formatter: 'Total',
                                 },
@@ -359,11 +359,11 @@ const LandingPage = () => {
                         style={{ height: '100%', width: '100%' }}
                       />
                     </div>
-                    <div className="mt-4 sm:mt-2 text-center">
-                      <div className="text-sm sm:text-xs text-gray-600">
+                    <div className="mt-4 text-center">
+                      <div className="text-sm text-gray-600">
                         ${totalActual.toFixed(1)}M / ${totalAmbition.toFixed(1)}M
                       </div>
-                      <div className={`text-sm sm:text-xs font-semibold ${totalActual >= totalAmbition ? 'text-green-600' : 'text-red-600'}`}>
+                      <div className={`text-sm font-semibold ${totalActual >= totalAmbition ? 'text-green-600' : 'text-red-600'}`}>
                         {totalPercentage}% of Ambition
                       </div>
                     </div>
