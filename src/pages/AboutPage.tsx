@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Cloud, Server } from 'lucide-react'
+import { ArrowRight, Cloud, Server, Linkedin } from 'lucide-react'
 import Navigation from '../components/Navigation'
 import { Button } from '../components/ui/Button'
 
@@ -71,9 +71,20 @@ const AboutPage = () => {
               Founder
             </h2>
             <div className="mb-0">
-              <h3 className="text-2xl font-bold text-[#1a1a1a] mb-4">
-                Tudor Caloian
-              </h3>
+              <div className="flex items-center gap-3 mb-4">
+                <h3 className="text-2xl font-bold text-[#1a1a1a]">
+                  Tudor Caloian
+                </h3>
+                <a
+                  href="https://www.linkedin.com/in/tudorcaloian/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[#0077b5] hover:text-[#005885] transition-colors"
+                  aria-label="Tudor Caloian LinkedIn"
+                >
+                  <Linkedin className="w-6 h-6" />
+                </a>
+              </div>
               <p className="text-lg text-gray-600 mb-4">
                 While working at Orange, he led implementation of a comprehensive AI value tracking system across 26 countries which resulted in tracking <span className="font-bold text-[#1a1a1a]">€300M in AI use case value in 2025</span>.
               </p>
