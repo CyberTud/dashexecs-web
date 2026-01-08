@@ -112,10 +112,9 @@ const LandingPage = () => {
                     <div 
                       className="relative w-64 h-64 sm:w-28 sm:h-28 lg:w-32 lg:h-32 chart-container" 
                       data-chart-key={data.quarter}
-                      onTouchEnd={(e) => {
+                      onTouchEnd={() => {
                         if (isMobile) {
-                          e.preventDefault()
-                          setTimeout(() => hideChartTooltip(data.quarter), 200)
+                          hideChartTooltip(data.quarter)
                         }
                       }}
                     >
@@ -253,10 +252,9 @@ const LandingPage = () => {
                     <div 
                       className="relative w-64 h-64 sm:w-28 sm:h-28 lg:w-32 lg:h-32 chart-container" 
                       data-chart-key="total"
-                      onTouchEnd={(e) => {
+                      onTouchEnd={() => {
                         if (isMobile) {
-                          e.preventDefault()
-                          setTimeout(() => hideChartTooltip('total'), 200)
+                          hideChartTooltip('total')
                         }
                       }}
                     >
