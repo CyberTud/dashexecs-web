@@ -139,7 +139,7 @@ const SolutionPage = () => {
               </p>
               <a href={BOOK_A_CALL_URL} target="_blank" rel="noreferrer">
                 <Button variant="primary" size="lg" className="flex items-center gap-2">
-                  Book a Demo
+                  Book a Call
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </a>
