@@ -219,7 +219,7 @@ const LandingPage = () => {
                         style={{ height: '100%', width: '100%' }}
                       />
                     </div>
-                    <div className="mt-1 text-center">
+                    <div className="mt-0 text-center">
                       <div className="text-sm sm:text-xs text-gray-600">
                         ${data.actualRevenue}M / ${data.ambitionRevenue}M
                       </div>
@@ -359,7 +359,7 @@ const LandingPage = () => {
                         style={{ height: '100%', width: '100%' }}
                       />
                     </div>
-                    <div className="mt-1 text-center">
+                    <div className="mt-0 text-center">
                       <div className="text-sm sm:text-xs text-gray-600">
                         ${totalActual.toFixed(1)}M / ${totalAmbition.toFixed(1)}M
                       </div>
