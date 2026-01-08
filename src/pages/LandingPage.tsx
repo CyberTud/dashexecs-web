@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Cloud, Server } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import ReactECharts from 'echarts-for-react'
 import Navigation from '../components/Navigation'
@@ -10,6 +10,7 @@ const BOOK_A_CALL_URL = 'https://calendly.com/tudor-caloian/30min'
 
 const LandingPage = () => {
   const [isMobile, setIsMobile] = useState(false)
+  const chartRefs = useRef<{ [key: string]: ReactECharts | null }>({})
 
   useEffect(() => {
     const checkMobile = () => {
@@ -19,6 +20,15 @@ const LandingPage = () => {
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
+
+  // Function to hide tooltip for a specific chart
+  const hideChartTooltip = (chartKey: string) => {
+    if (chartRefs.current[chartKey]?.getEchartsInstance()) {
+      chartRefs.current[chartKey].getEchartsInstance().dispatchAction({
+        type: 'hideTip'
+      })
+    }
+  }
   // Sample quarterly data - Actual vs Ambition Revenue
   const quarterlyData = [
     {
@@ -99,8 +109,22 @@ const LandingPage = () => {
                 
                 return (
                   <div key={data.quarter} className="flex flex-col items-center">
-                    <div className="relative w-64 h-64 sm:w-28 sm:h-28 lg:w-32 lg:h-32">
+                    <div 
+                      className="relative w-64 h-64 sm:w-28 sm:h-28 lg:w-32 lg:h-32 chart-container" 
+                      data-chart-key={data.quarter}
+                      onTouchEnd={(e) => {
+                        if (isMobile) {
+                          e.preventDefault()
+                          setTimeout(() => hideChartTooltip(data.quarter), 200)
+                        }
+                      }}
+                    >
                       <ReactECharts
+                        ref={(e) => {
+                          if (e) {
+                            chartRefs.current[data.quarter] = e
+                          }
+                        }}
                         option={{
                           tooltip: {
                             trigger: 'item',
@@ -111,6 +135,8 @@ const LandingPage = () => {
                             textStyle: {
                               color: '#1a1a1a',
                             },
+                            hideDelay: isMobile ? 0 : 100,
+                            triggerOn: isMobile ? 'mousemove|click' : 'mousemove',
                             formatter: (params: any) => {
                               if (params.name === 'Actual Revenue') {
                                 return `
@@ -224,8 +250,22 @@ const LandingPage = () => {
                 
                 return (
                   <div key="total" className="flex flex-col items-center sm:col-span-1 sm:ml-2">
-                    <div className="relative w-64 h-64 sm:w-28 sm:h-28 lg:w-32 lg:h-32">
+                    <div 
+                      className="relative w-64 h-64 sm:w-28 sm:h-28 lg:w-32 lg:h-32 chart-container" 
+                      data-chart-key="total"
+                      onTouchEnd={(e) => {
+                        if (isMobile) {
+                          e.preventDefault()
+                          setTimeout(() => hideChartTooltip('total'), 200)
+                        }
+                      }}
+                    >
                       <ReactECharts
+                        ref={(e) => {
+                          if (e) {
+                            chartRefs.current['total'] = e
+                          }
+                        }}
                         option={{
                           tooltip: {
                             trigger: 'item',
@@ -236,6 +276,8 @@ const LandingPage = () => {
                             textStyle: {
                               color: '#1a1a1a',
                             },
+                            hideDelay: isMobile ? 0 : 100,
+                            triggerOn: isMobile ? 'mousemove|click' : 'mousemove',
                             formatter: (params: any) => {
                               if (params.name === 'Actual Revenue') {
                                 return `
