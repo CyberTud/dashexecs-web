@@ -15,8 +15,6 @@ const solutions = {
     features: [
       'Quarterly performance tracking with visual donut charts',
       'Actual vs. Ambition comparisons for every metric',
-      'Filter by year, area, and entity',
-      'Real-time data from all business units',
       'Percentage-based progress indicators',
       'Color-coded status (green for exceeding, red for behind)',
     ],
